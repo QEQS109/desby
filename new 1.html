@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل الأسماء إلى أرقام</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>تحويل الأسماء إلى أرقام</h1>
+        <input type="text" id="nameInput" placeholder="أدخل الاسم">
+        <button onclick="convertToNumbers()">تحويل</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convertToNumbers() {
+            // الحصول على الاسم من الحقل النصي
+            var name = document.getElementById("nameInput").value;
+            var result = "";
+            
+            // تحويل كل حرف إلى رقمه بناءً على ترتيبه في الأبجدية
+            for (var i = 0; i < name.length; i++) {
+                var char = name[i];
+                // التحقق إذا كان الحرف هو حرف عربي
+                if (char >= 'ا' && char <= 'ي') {
+                    var charCode = char.charCodeAt(0) - 'ا'.charCodeAt(0) + 1;
+                    result += charCode + "-";
+                }
+            }
+
+            // حذف العلامة "-" الزائدة في النهاية
+            if (result.endsWith("-")) {
+                result = result.slice(0, -1);
+            }
+
+            // عرض النتيجة
+            document.getElementById("result").innerText = "النتيجة: " + result;
+        }
+    </script>
+
+</body>
+</html>
